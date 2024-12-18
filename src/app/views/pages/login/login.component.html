@@ -5,35 +5,50 @@
         <c-card-group>
           <c-card class="p-4">
             <c-card-body>
-              <form cForm>
-                <h1>Login</h1>
-                <p class="text-body-secondary">Sign In to your account</p>
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" cForm>
+                <h1>Đăng nhập</h1>
+                <p class="text-body-secondary">Đăng nhập bằng tài khoản được cung cấp</p>
+
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input autoComplete="username" cFormControl placeholder="Username" />
+                  <input
+                    formControlName="username"
+                    autoComplete="username"
+                    cFormControl
+                    placeholder="Mã nhân viên"
+                  />
                 </c-input-group>
+                <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="text-danger">
+                  Tên đăng nhập là bắt buộc.
+                </div>
+
                 <c-input-group class="mb-4">
                   <span cInputGroupText>
                     <svg cIcon name="cilLockLocked"></svg>
                   </span>
                   <input
+                    formControlName="password"
                     autoComplete="current-password"
                     cFormControl
-                    placeholder="Password"
+                    placeholder="Mật khẩu"
                     type="password"
                   />
                 </c-input-group>
+                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+                  Mật khẩu là bắt buộc.
+                </div>
+
                 <c-row>
                   <c-col xs="6">
-                    <button cButton class="px-4" color="primary">
-                      Login
+                    <button cButton class="px-4" color="primary" [disabled]="loginForm.invalid" type="submit">
+                      Đăng nhập
                     </button>
                   </c-col>
                   <c-col class="text-right" xs="6">
-                    <button cButton class="px-0" color="link">
-                      Forgot password?
+                    <button cButton class="px-0" color="link" type="button">
+                      Quên mật khẩu?
                     </button>
                   </c-col>
                 </c-row>
@@ -43,10 +58,9 @@
           <c-card [ngStyle]="{'minWidth.%': 44}" class="text-white bg-primary py-5">
             <c-card-body class="text-center">
               <div>
-                <h2>Sign up</h2>
+                <h2>Đăng ký</h2>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua.
+                 Để đăng ký sử dụng phần mềm quản lý kiểm kê xin vui lòng liên hệ P. CNTT
                 </p>
                 <button [active]="true" cButton class="mt-3" color="primary" routerLink="/register">
                   Register Now!

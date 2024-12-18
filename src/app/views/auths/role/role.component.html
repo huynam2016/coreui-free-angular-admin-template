@@ -1,0 +1,28 @@
+<c-row class="bg-grid-header">
+  <c-col style="padding-top: 24px;"> <button ejs-button cssClass="e-success" (click)="openCreate(0)">Thêm mới</button></c-col>
+  <c-col>
+    <ejs-textbox placeholder="Tìm kiếm" cssClass="e-outline" floatLabelType="Auto"></ejs-textbox>
+  </c-col>
+</c-row>
+<c-row>
+  <c-col class="bg-grid-body">
+    <ejs-grid [dataSource]='data' gridLines='Both' [autoFit]="true" [allowResizing]="true">
+      <e-columns>
+        <e-column field='Id' headerText='ID'></e-column>
+        <e-column field='Name' headerText='Tên'></e-column>
+        <e-column field='Description' headerText='Mô tả'></e-column>
+        <e-column field='IsActive' headerText='Active'></e-column>
+        <e-column field='CreatedAt' headerText='Ngày tạo'  type="dateTime" format="dd/MM/yyyy HH:mm:ss"></e-column>
+        <e-column field='CreatedBy' headerText='Người tạo'></e-column>
+        <e-column field="LastModifiedAt" headerText="Sửa lần cuối" type="dateTime" format="dd/MM/yyyy HH:mm:ss">
+        </e-column>
+        <e-column field='LastModifiedBy' headerText='Người sửa'></e-column>
+        <e-column headerText='' width="100" textAlign="center">
+          <ng-template #template let-data>
+            <button ejs-button cssClass="e-info" (click)="update(data)">Sửa</button>
+          </ng-template>
+        </e-column>
+      </e-columns>
+    </ejs-grid>
+  </c-col>
+</c-row>

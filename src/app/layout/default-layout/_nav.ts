@@ -11,6 +11,24 @@ export const navItems: INavData[] = [
     }
   },
   {
+    name: 'Phân quyền',
+    url: '/auth',
+    iconComponent: { name: 'cil-puzzle' },
+    children: [
+      {
+        name: 'Người dùng',
+        url: '/auth/user',
+        icon: 'nav-icon-bullet'
+      },
+      {
+        name: 'Vai trò',
+        url: '/auth/role',
+        icon: 'nav-icon-bullet'
+      }
+
+    ]
+  },
+  {
     title: true,
     name: 'Theme'
   },

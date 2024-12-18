@@ -4,6 +4,7 @@ body {
 
 .wrapper {
   width: 100%;
+  background-color: #fff;
   @include ltr-rtl("padding-left", var(--cui-sidebar-occupy-start, 0));
   @include ltr-rtl("padding-right", var(--cui-sidebar-occupy-end, 0));
   will-change: auto;

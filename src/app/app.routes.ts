@@ -11,9 +11,13 @@ export const routes: Routes = [
     path: '',
     component: DefaultLayoutComponent,
     data: {
-      title: 'Home'
+      title: 'Trang chủ'
     },
     children: [
+      {
+        path: 'auth',
+        loadChildren: () => import('./views/auths/routes').then((m) => m.routes)
+      },
       {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)

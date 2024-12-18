@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { NgScrollbar } from 'ngx-scrollbar';
-
-import { IconDirective } from '@coreui/icons-angular';
 import {
   ContainerComponent,
   ShadowOnScrollDirective,
@@ -17,6 +15,8 @@ import {
 
 import { DefaultFooterComponent, DefaultHeaderComponent } from './';
 import { navItems } from './_nav';
+import { IconSetService } from '@coreui/icons-angular';
+import { iconSubset } from '../../icons/icon-subset';
 
 function isOverflown(element: HTMLElement) {
   return (
@@ -34,7 +34,6 @@ function isOverflown(element: HTMLElement) {
         SidebarHeaderComponent,
         SidebarBrandComponent,
         RouterLink,
-        IconDirective,
         NgScrollbar,
         SidebarNavComponent,
         SidebarFooterComponent,
@@ -49,7 +48,9 @@ function isOverflown(element: HTMLElement) {
 })
 export class DefaultLayoutComponent {
   public navItems = navItems;
-
+  constructor(private iconSetService: IconSetService) {
+    this.iconSetService.icons = { ...iconSubset }; // Nạp subset icon
+  }
   onScrollbarUpdate($event: any) {
     // if ($event.verticalUsed) {
     // console.log('verticalUsed', $event.verticalUsed);

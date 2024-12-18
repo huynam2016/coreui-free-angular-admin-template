@@ -12,7 +12,8 @@ import {
 import { DropdownModule, SidebarModule } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
 import { routes } from './app.routes';
-
+import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { ModalModule } from 'ngx-bootstrap/modal'; // Import ModalModule
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes,
@@ -29,6 +30,8 @@ export const appConfig: ApplicationConfig = {
     ),
     importProvidersFrom(SidebarModule, DropdownModule),
     IconSetService,
-    provideAnimations()
+    provideAnimations(),
+    provideHttpClient(),
+    importProvidersFrom(ModalModule.forRoot())
   ]
 };
