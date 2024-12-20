@@ -14,13 +14,13 @@
                     <svg cIcon name="cilUser"></svg>
                   </span>
                   <input
-                    formControlName="username"
-                    autoComplete="username"
+                    formControlName="logName"
+                    autoComplete="logName"
                     cFormControl
                     placeholder="Mã nhân viên"
                   />
                 </c-input-group>
-                <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="text-danger">
+                <div *ngIf="loginForm.get('logName')?.invalid && loginForm.get('logName')?.touched" class="text-danger">
                   Tên đăng nhập là bắt buộc.
                 </div>
 
@@ -73,3 +73,4 @@
     </c-row>
   </c-container>
 </div>
+<ejs-toast #toast id='toast' [position]="position"></ejs-toast>

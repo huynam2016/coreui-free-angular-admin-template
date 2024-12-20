@@ -19,7 +19,7 @@ export class DataService {
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Authorization': `Bearer ${localStorage.getItem('tokenTienTho')}`,
     });
   }
   // Xử lý lỗi
@@ -50,6 +50,39 @@ export class DataService {
       .get<T[]>(`${this.baseUrl}/${endpoint}`, {
         headers: this.getHeaders(),
         params: httpParams,
+      })
+      .pipe(catchError(this.handleError));
+  }
+  post(endpoint: string, data: any): Observable<any> {
+    return this.http
+      .post(`${this.baseUrl}/${endpoint}`, JSON.stringify(data), {
+        headers: this.getHeaders(),
+      })
+      .pipe(catchError(this.handleError));
+  }
+  // POST: Thêm mới item
+  create(endpoint: string, data: any): Observable<any> {
+    return this.http
+      .post(`${this.baseUrl}/${endpoint}`, JSON.stringify(data), {
+        headers: this.getHeaders(),
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  // PUT: Cập nhật item
+  update(endpoint: string, id: string | number, data: any): Observable<any> {
+    return this.http
+      .put(`${this.baseUrl}/${endpoint}/${id}`, JSON.stringify(data), {
+        headers: this.getHeaders(),
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  // DELETE: Xóa item
+  delete(endpoint: string, id: string | number): Observable<any> {
+    return this.http
+      .delete(`${this.baseUrl}/${endpoint}/${id}`, {
+        headers: this.getHeaders(),
       })
       .pipe(catchError(this.handleError));
   }

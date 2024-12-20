@@ -7,4 +7,24 @@
   padding-bottom: 15px;
 }
 
+.active {
+  background-color: #cfc;
+  padding: 3px;
+  border-radius: 5px !important;
+  text-align: center;
+  .e-activecolor {
+    color: #0c0 !important;
+  }
+}
+.inactive {
+  background-color: #ffd7cc;
+  padding: 3px;
+  border-radius: 5px !important;
+  text-align: center;
+  .e-inactivecolor {
+    color: #e60000 !important;
+  }
+}
+
+
 

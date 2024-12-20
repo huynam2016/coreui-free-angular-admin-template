@@ -1,27 +1,41 @@
 <div class="modal-header">
-  <h5 class="modal-title">Update Item</h5>
+  <h5 class="modal-title">{{title}}</h5>
   <button type="button" class="btn-close" aria-label="Close" (click)="cancel()"></button>
 </div>
 <div class="modal-body">
-  <form [formGroup]="updateForm">
-    <div class="mb-3">
-      <label for="name" class="form-label">Name</label>
-      <input id="name" formControlName="name" class="form-control" type="text" />
-      <div *ngIf="updateForm.get('name')?.invalid && updateForm.get('name')?.touched" class="text-danger">
-        Name is required.
+  <form [formGroup]="form" class="form-horizontal" novalidate="">
+
+    <div>
+      <ejs-textbox formControlName="Name" id="Name" placeholder="Tên vai trò" cssClass="e-outline"
+        floatLabelType="Auto"></ejs-textbox>
+      <div *ngIf="form.get('Name')?.invalid && form.get('Name')?.touched" class="e-error">
+        Tên vai trò không bỏ trống.
       </div>
     </div>
-
-    <div class="mb-3">
-      <label for="description" class="form-label">Description</label>
-      <textarea id="description" formControlName="description" class="form-control"></textarea>
-      <div *ngIf="updateForm.get('description')?.invalid && updateForm.get('description')?.touched" class="text-danger">
-        Description is required.
+    <div>
+      <ejs-textarea formControlName="Description" id="Description" placeholder="Mô tả" cssClass="e-outline"
+        floatLabelType="Auto" rows="5" cols="400"></ejs-textarea>
+      <div *ngIf="form.get('Description')?.invalid && form.get('Description')?.touched" class="e-error">
+        Mô tả không bỏ trống.
       </div>
+    </div>
+    <div>
+      <ejs-multiselect formControlName="PermissionIds" id="PermissionIds" placeholder="Chọn phân quyền" mode='CheckBox'
+        [dataSource]='data' [fields]='dataFeilds' [showDropDownIcon]='true' showSelectAll='true'
+        filterBarPlaceholder="Tim kiem" cssClass="e-outline" floatLabelType="Auto"></ejs-multiselect>
+      <div *ngIf="form.get('PermissionIds')?.invalid && form.get('PermissionIds')?.touched" class="e-error">
+        Phân quyền không bỏ trống.
+      </div>
+    </div>
+    <div style="font-weight: 500;">
+        <ejs-checkbox formControlName="IsActive" label="Kích hoạt"></ejs-checkbox>
     </div>
   </form>
 </div>
-<div class="modal-footer">
-  <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
-  <button class="btn btn-primary" [disabled]="updateForm.invalid" (click)="save()">Save</button>
+<div class="modal-footer d-flex">
+  <div class="me-auto">
+    <button ejs-button class="e-danger" (click)="cancel()">Cancel</button>
+  </div>
+  <div class="ms-auto"> <button ejs-button class="e-success" [disabled]="form.invalid" (click)="save()">Save</button>
+  </div>
 </div>
